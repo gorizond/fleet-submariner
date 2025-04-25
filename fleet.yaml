@@ -7,6 +7,7 @@ helm:
   chart: submariner-operator
   repo: https://submariner-io.github.io/submariner-charts/charts
   version: 0.20.0
+  releaseName: submariner
   values:
     broker:
       namespace: submariner-operator
