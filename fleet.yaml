@@ -9,7 +9,7 @@ helm:
   version: 0.20.0
   values:
     broker:
-      namespace: submariner-k8s-broker
+      namespace: submariner-operator
       server: gorizond.negash.ru:6443
       insecure: true
       globalnet: false
