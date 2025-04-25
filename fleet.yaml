@@ -20,7 +20,7 @@ helm:
     submariner:
       natEnabled: false
       healthcheckEnabled: true
-      globalCidr: 242.0.${ if hasKey .ClusterAnnotations "gorizond.globalCidrId" }${ get .ClusterAnnotations "gorizond.globalCidrId" }${ else }100${ end }${ .ClusterAnnotations.globalCidrId }.0/24
+      globalCidr: 242.0.${ if hasKey .ClusterAnnotations "gorizond.globalCidrId" }${ get .ClusterAnnotations "gorizond.globalCidrId" }${ else }100${ end }${ get .ClusterAnnotations "gorizond.globalCidrId" }.0/24
       cableDriver: libreswan
       clusterId: global.fleet.clusterLabels.management.cattle.io/cluster-display-name
       loadBalancerEnabled: false
