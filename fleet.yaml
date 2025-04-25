@@ -23,8 +23,8 @@ helm:
       cableDriver: libreswan
       clusterId: global.fleet.clusterLabels.management.cattle.io/cluster-display-name
       loadBalancerEnabled: false
-      clusterCidr: 10.42.0.0/16
-      serviceCidr: 10.43.0.0/16
+      clusterCidr: ${ if hasKey .ClusterAnnotations "gorizond.clusterCidr" }${ get .ClusterAnnotations "gorizond.clusterCidr" }${ else }10.42.0.0/16${ end }
+      serviceCidr: ${ if hasKey .ClusterAnnotations "gorizond.serviceCidr" }${ get .ClusterAnnotations "gorizond.serviceCidr" }${ else }10.43.0.0/16${ end }
   valuesFrom:
   - secretKeyRef:
       name: submariner-operator-values
