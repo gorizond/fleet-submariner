@@ -12,7 +12,7 @@ helm:
       namespace: submariner-operator
       server: gorizond.negash.ru:6443
       insecure: true
-      globalnet: false
+      globalnet: true
     defaultOperatorImage: true
     defaultSubmarinerImages: true
     ipsec:
