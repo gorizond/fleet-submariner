@@ -1,0 +1,32 @@
+defaultNamespace: submariner-operator
+
+labels:
+  gorizond: submariner
+
+helm:
+  chart: submariner-operator
+  repo: https://submariner-io.github.io/submariner-charts/charts
+  version: 0.20.0
+  values:
+    broker:
+      namespace: submariner-k8s-broker
+      server: gorizond.negash.ru:6443
+      insecure: true
+      globalnet: false
+    defaultOperatorImage: true
+    defaultSubmarinerImages: true
+    ipsec:
+      forceUDPEncaps: false
+    submariner:
+      natEnabled: false
+      healthcheckEnabled: true
+      cableDriver: libreswan
+      clusterId: global.fleet.clusterLabels.management.cattle.io/cluster-display-name
+      loadBalancerEnabled: false
+      clusterCidr: 10.42.0.0/16
+      serviceCidr: 10.43.0.0/16
+  valuesFrom:
+  - secretKeyRef:
+      name: submariner-operator-values
+      namespace: submariner-operator
+      key: values.yaml
