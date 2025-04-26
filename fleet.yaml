@@ -13,7 +13,6 @@ helm:
       namespace: submariner-operator
       server: gorizond.negash.ru:6443
       insecure: true
-      globalnet: true
     defaultOperatorImage: true
     defaultSubmarinerImages: true
     ipsec:
@@ -21,7 +20,9 @@ helm:
     submariner:
       natEnabled: false
       healthcheckEnabled: true
-      globalCidr: 242.0.${ if hasKey .ClusterAnnotations "gorizond.globalCidrId" }${ get .ClusterAnnotations "gorizond.globalCidrId" }${ else }100${ end }.0/24
+      clustersetIpEnabled: true
+      clustersetIpCidr: 243.${ if hasKey .ClusterAnnotations "gorizond.globalCidrId" }${ get .ClusterAnnotations "gorizond.globalCidrId" }${ else }100${ end }.0.0/20
+      loadBalancerEnabled: true
       cableDriver: libreswan
       clusterId: global.fleet.clusterLabels.management.cattle.io/cluster-display-name
       loadBalancerEnabled: false
